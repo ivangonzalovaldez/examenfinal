@@ -15,11 +15,11 @@
         <h4>Autos en stock</h4>
         <button class="btn btn-link" v-on:click="consumirApi">Buscar</button>
         <hr>
-        <div v-for="auto in Auto">
-            Marca: {{auto.Nombre}}
+        <div v-for="auto in Autos">
+            Marca: <b>{{auto.Marca.Nombre}}</b> 
             <br>
-            Modelo: {{auto.Modelo}}
-            <br>
+            Modelo: <b>{{auto.Modelo}}</b> 
+            <hr>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -28,12 +28,12 @@
     var app = new Vue({
             el: '#app',
             data: {
-                Auto: []
+                Autos: []
             },
             methods: {
                 consumirApi: function () {
-                    this.$http.get('C:\xampp\htdocs\examenfinal\api\Autos.php').then(function (respuesta) {
-                        this.Auto = respuesta.body.data;
+                    this.$http.get('api/Autos.php').then(function (respuesta) {
+                        this.Autos = respuesta.body;
                     });
                 }
             }
